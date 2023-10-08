@@ -7,3 +7,15 @@ before_install:
 
 script:
   - docker run -e CI=true uurde/docker-react npm run test
+
+deploy:
+  provider: elasticbeanstalk
+  region: "eu-north-1"
+  app: "uur-docker"
+  env: "Uur-docker-env"
+  bucket_name: "elasticbeanstalk-eu-north-1-575074762777"
+  bucket_path: "uur-docker"
+  on:
+    branch: main
+  access_key_id: "$AWS_ACCESS_KEY"
+  secret_access_key: "$AWS_SECRET_KEY"
